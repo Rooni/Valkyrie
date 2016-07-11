@@ -1,0 +1,138 @@
+<uib-alert type="warning">This is really unfinished. The layout and functionality may change at any time.</uib-alert>
+<uib-alert type="info">
+  <p>How to use:</p>
+  <ol>
+    <li>Add your farms, ether furnaces and iron works.</li>
+    <li>Click the 'collect' button.</li>
+    <li>Collect your resources in-game. (or the other way around, it doesn't really matter.)</li>
+    <li>Wait</li>
+  </ol>
+  <p>This page uses cookies to save your buildings.</p>
+  If something stops working, click <span style="text-decoration: underline;" ng-click="db.resetFarmCookie();">here</span> to reset the cookies, then refresh the page.
+</uib-alert>
+<div class="row">
+  <div class="col-md-4">
+    <!-- Output panel-->
+    <div class="panel panel-success">
+      <div class="panel-body">
+        <span class="col-sm-4"><img src="/assets/images/icon-gold-sm.png" alt="Gold"> {{db.totals[0] | number:0}}</span>
+        <span class="col-sm-4"><img src="/assets/images/icon-ether-sm.png" alt="Ether"> {{db.totals[1] | number:0}}</span>
+        <span class="col-sm-4"><img src="/assets/images/icon-iron-sm.png" alt="Iron"> {{db.totals[2] | number:0}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-xs-8">
+          <p class="form-control-static">Last update: {{db.lastCollect()}}</p>
+        </div>
+        <div class="col-xs-4">
+          <input type="button" class="btn btn-success btn-block" value="Collect" ng-click="db.collect()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add a farm</h3>
+      </div>
+      <div class="panel-body">
+        <form name="farmForm" ng-submit="db.addFarm(type,level)">
+          <div class="col-xs-5">
+            <div class="input-group">
+              <div class="input-group-addon">Lv.</div>
+              <input type="number" class="form-control" ng-init="level=1" min="1" max="10" ng-model="level" required>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <select class="form-control" ng-init="type='1'" ng-model="type" required>
+              <option value="0">Gold</option>
+              <option value="1">Ether</option>
+              <option value="2">Iron</option>
+            </select>
+          </div>
+          <div class="col-xs-3">
+            <input type="submit" class="btn btn-primary btn-block" value="Add">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <!-- Gold panel -->
+  <div class="col-sm-4">
+    <div class="panel panel-gold" ng-class="db.styleMinimal ? 'style-minimal' : 'style-normal'">
+      <div class="panel-heading"><span class="panel-title">Gold</span><span ng-click="db.styleMinimal=!db.styleMinimal" class="glyphicon glyphicon-plus pull-right"></span></div>
+      <div class="panel-body">
+        <div class="farm" ng-repeat="data in db.farms | filter:{type:0}">
+          <div ng-show="db.styleEdit" class="edit">
+            <button ng-click="db.setFarm(data.id,1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-up"></span></button>
+            <button ng-click="db.setFarm(data.id,-1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            <span class="btn btn-style-green btn-xs pull-left">Level {{data.lv}}</span>
+            <button ng-click="db.delFarm(data.id)" class="btn btn-style-red btn-xs pull-right">Delete <span class="glyphicon glyphicon-trash"></span></button>
+          </div>
+          <div class="clearfix"></div>
+          <div ng-hide="db.styleMinimal"><span>Level {{data.lv}}</span><span class="pull-right">{{data.now}}</span></div>
+          <div class="progress">
+            <span ng-show="db.styleMinimal" class="progress-text">Lv {{data.lv}}</span>
+            <span ng-show="db.styleMinimal" class="progress-text-right">{{data.now}}</span>
+            <div class="progress-bar progress-bar-gold" role="progressbar" aria-valuenow="{{data.now}}" aria-valuemin="0" aria-valuemax="{{data.max}}" style="width: {{data.percent}}%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Ether panel -->
+  <div class="col-sm-4">
+    <div class="panel panel-ether" ng-class="db.styleMinimal ? 'style-minimal' : 'style-normal'">
+      <div class="panel-heading"><span class="panel-title">Ether</span><span ng-click="db.styleMinimal=!db.styleMinimal" class="glyphicon glyphicon-plus pull-right"></span></div>
+      <div class="panel-body">
+        <div class="farm" ng-repeat="data in db.farms | filter:{type:1}">
+          <div ng-show="db.styleEdit" class="edit">
+            <button ng-click="db.setFarm(data.id,1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-up"></span></button>
+            <button ng-click="db.setFarm(data.id,-1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            <span class="btn btn-style-green btn-xs pull-left">Level {{data.lv}}</span>
+            <button ng-click="db.delFarm(data.id)" class="btn btn-style-red btn-xs pull-right">Delete <span class="glyphicon glyphicon-trash"></span></button>
+          </div>
+          <div class="clearfix"></div>
+          <div ng-hide="db.styleMinimal"><span>Level {{data.lv}}</span><span class="pull-right">{{data.now}}</span></div>
+          <div class="progress">
+            <span ng-show="db.styleMinimal" class="progress-text">Lv {{data.lv}}</span>
+            <span ng-show="db.styleMinimal" class="progress-text-right">{{data.now}}</span>
+            <div class="progress-bar progress-bar-ether" role="progressbar" aria-valuenow="{{data.now}}" aria-valuemin="0" aria-valuemax="{{data.max}}" style="width: {{data.percent}}%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Iron panel -->
+  <div class="col-sm-4">
+    <div class="panel panel-iron" ng-class="db.styleMinimal ? 'style-minimal' : 'style-normal'">
+      <div class="panel-heading">
+        <span class="panel-title">Iron</span>
+        <span ng-click="db.addFarm(2,1)" class="glyphicon glyphicon-plus pull-right"></span>
+        <span ng-click="db.styleEdit=!db.styleEdit" class="glyphicon glyphicon-pencil pull-right"></span>
+      </div>
+      <div class="panel-body">
+        <div class="farm" ng-repeat="data in db.farms | filter:{type:2}">
+          <div ng-show="db.styleEdit" class="edit">
+            <button ng-click="db.setFarm(data.id,1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-up"></span></button>
+            <button ng-click="db.setFarm(data.id,-1)" class="btn btn-style-green btn-xs pull-left"><span class="glyphicon glyphicon-chevron-down"></span></button>
+            <span class="btn btn-style-green btn-xs pull-left">Level {{data.lv}}</span>
+            <button ng-click="db.delFarm(data.id)" class="btn btn-style-red btn-xs pull-right">Delete <span class="glyphicon glyphicon-trash"></span></button>
+          </div>
+          <div class="clearfix"></div>
+          <div ng-hide="db.styleMinimal"><span>Level {{data.lv}}</span><span class="pull-right">{{data.now}}</span></div>
+          <div class="progress">
+            <span ng-show="db.styleMinimal" class="progress-text">Lv {{data.lv}}</span>
+            <span ng-show="db.styleMinimal" class="progress-text-right">{{data.now}}</span>
+            <div class="progress-bar progress-bar-iron" role="progressbar" aria-valuenow="{{data.now}}" aria-valuemin="0" aria-valuemax="{{data.max}}" style="width: {{data.percent}}%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Panel end -->
+</div>

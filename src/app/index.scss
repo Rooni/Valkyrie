@@ -1,0 +1,296 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+$grid-gutter-width: 10px;
+$border-radius-base: 2px;
+$brand-primary: #2e9cfa;
+$line-height-base: 1.2;
+@import '../../bower_components/bootswatch/simplex/_variables.scss';
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+//@import "../../bower_components/bootswatch/sandstone/_bootswatch.scss";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+//Panel
+.panel-heading .glyphicon {
+  cursor:pointer;
+  margin-left: 10px;
+}
+
+//Resources
+$resGold: #ebc632;
+$redEther: #7ec101;
+$resIron: #949392;
+.panel-gold{
+  border-color: $resGold;
+  .panel-heading {
+    color: white;
+    background-color: $resGold;
+  }
+}
+.progress-bar-gold{
+  background-color: $resGold;
+}
+.panel-ether{
+  border-color: $redEther;
+  .panel-heading {
+    color: white;
+    background-color: $redEther;
+  }
+}
+.progress-bar-ether{
+  background-color: $redEther;
+}
+.panel-iron{
+  border-color: $resIron;
+  .panel-heading {
+    color: white;
+    background-color: $resIron;
+  }
+}
+.progress-bar-iron{
+  background-color: $resIron;
+}
+
+//Styles
+.style-minimal {
+  .panel-body {
+    padding: 8px;
+  }
+  .progress {
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .progress:hover .progress-text,.progress:hover .progress-text-right {
+    display: block;
+  }
+  .progress-text {
+    position: absolute;
+    left: 4px;
+    display: none;
+  }
+  .progress-text-right {
+    position: absolute;
+    right: 4px;
+    display: none;
+  }
+}
+.style-normal {
+  .progress {
+    margin-bottom: 10px;
+  }
+}
+
+.farm:last-child .progress{
+  margin-bottom: 0;
+}
+
+.edit {
+  .btn {
+    margin: 2px;
+  }
+  .btn-style-red {
+    @include button-variant(white, #de1117, darken(#de1117,5%));
+  }
+  .btn-style-green {
+    @include button-variant(white, #46de2b, darken(#46de2b, 5%));
+  }
+}
+
+//OTHER
+
+body {
+  padding: 0;
+}
+$btn-col: #34a1ff;
+.btn-col-1 {
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+}
+
+.btn-col-2 {
+  $btn-col: adjust_hue($btn-col,50%);
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+}
+
+.btn-col-3 {
+  $btn-col: adjust_hue($btn-col,140);
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+}
+
+.btn-col-sr {
+  $btn-col: #36528b;
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+}
+
+.btn-col-ur {
+  $btn-col: #ea2624;
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+  &.l1{
+    $btn-col: darken($btn-col,4%);
+    @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+  }
+  &.l2{
+    $btn-col: darken($btn-col,4%);
+    @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+  }
+  &.l3{
+    $btn-col: darken($btn-col,4%);
+    @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+  }
+}
+
+$btn-col: #2dc34c;
+.btn-col-slime {
+  @include button-variant($btn-primary-color, $btn-col, darken($btn-col,5%));
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.btn-group .btn {
+  width: 64px;
+}
+
+.btn-offset {
+  margin-left: 128px;
+}
+
+.btn-spacer {
+  margin-bottom: 10px;
+}
+
+pre, .form-control {
+  padding: 4px 8px;
+}
+
+/* DEBUG */
+*[class^='col-'] {
+  outline: 0px dashed rgba(#f00,.5);
+}
+
+.img-nopad {
+  padding: 0;
+}
+
+/* Option display */
+
+.option {
+  h4 {
+    text-align: center;
+    margin: 4px 0;
+  }
+  .title {
+    text-align: left;
+  }
+  .arcana-img {
+    width: 50%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  hr {
+    margin: 5px 0;
+  }
+  .topheadu {
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    border-radius: 4px 4px 0 0 ;
+    margin-bottom: 4px;
+    padding: 4px;
+  }
+  .headu {
+    border-bottom: 1px solid #ccc;
+  }
+  .bg {
+    background-color: #ccc;
+  }
+}
+
+/* Cloaking */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+[ng-cloak].splash {
+  display: block !important;
+}
+.splash {
+  display: none;
+}
+
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.cube1, .cube2 {
+  background-color: #333;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+  100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+  25% {
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  } 50% {
+      transform: translateX(42px) translateY(42px) rotate(-179deg);
+      -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+    } 50.1% {
+        transform: translateX(42px) translateY(42px) rotate(-180deg);
+        -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+      } 75% {
+          transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+          -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+        } 100% {
+            transform: rotate(-360deg);
+            -webkit-transform: rotate(-360deg);
+          }
+}
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
