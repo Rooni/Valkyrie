@@ -72,6 +72,7 @@ $resIron: #949392;
 }
 
 //Styles
+.progress{height: 22px;}
 .style-minimal {
   .panel-body {
     padding: 8px;
@@ -105,8 +106,10 @@ $resIron: #949392;
 }
 
 .edit {
-  .btn {
-    margin: 2px;
+  margin-right: 4px;
+  .aaa {
+    display: inline-block;
+    width: 48px;
   }
   .btn-style-red {
     @include button-variant(white, #de1117, darken(#de1117,5%));

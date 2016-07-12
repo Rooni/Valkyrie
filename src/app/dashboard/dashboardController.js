@@ -247,11 +247,13 @@
     };
 
     //Load user config
-    vm.styleMinimal = false;
-    vm.styleEdit = false;
-    if (angular.isDefined($cookies.get('styleMinimal'))){
-      vm.styleMinimal = $cookies.get('styleMinimal');
-    }
+    vm.config = {
+      styleMinimal: ($cookies.get('styleMinimal')=='true')?true:false
+    };
+
+    vm.saveConfig = function(){
+      $cookies.put('styleMinimal',vm.config.styleMinimal);
+    };
 
     if (angular.isDefined($cookies.get('farmss'))) {
       vm.getFarmCookie();
